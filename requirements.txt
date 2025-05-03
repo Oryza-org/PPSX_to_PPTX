@@ -1,0 +1,10 @@
+# このプロジェクトは LibreOffice または OpenOffice の Python UNO ブリッジに依存しています。
+# これらは通常、LibreOffice/OpenOffice のインストールに含まれます。
+# pip でインストールするパッケージはありませんが、実行には LibreOffice/OpenOffice が
+# インストールされ、UNO リスニングモードで実行されている必要があります。
+#
+# 詳細は README.md を参照してください。
+
+# (もし将来的に pip でインストール可能な依存関係が増えたら、ここに追加します)
+# 例:
+# some_package>=1.0.0

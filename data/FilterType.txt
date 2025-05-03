@@ -16,7 +16,8 @@ Freehand Document|com.sun.star.drawing.DrawingDocument|Adobe/Macromedia Freehand
 GIF - Graphics Interchange|com.sun.star.drawing.DrawingDocument|GIF - Graphics Interchange Format|IMPORT|gif_Graphics_Interchange|gif|image/gif
 JPG - JPEG|com.sun.star.drawing.DrawingDocument|JPEG - Joint Photographic Experts Group|IMPORT|jpg_JPEG|jpg jpeg jfif jif jpe|image/jpeg
 MET - OS/2 Metafile|com.sun.star.drawing.DrawingDocument|MET - OS/2 Metafile|IMPORT|met_OS2_Metafile|met|image/x-met
-MOV - MOV|com.sun.star.drawing.DrawingDocument|MOV - QuickTime ファイルフォーマット|IMPORT|mov_MOV|mov MOV|application/movie
+MOV - MOV|com.sun.star.drawing.DrawingDocument|MOV - QuickTime
+ファイルフォーマット|IMPORT|mov_MOV|mov MOV|application/movie
 MWAW_Bitmap|com.sun.star.drawing.DrawingDocument|古いMacのビットマップ|IMPORT PREFERRED|MWAW_Bitmap||
 MWAW_Drawing|com.sun.star.drawing.DrawingDocument|古いMacのドロー形式|IMPORT PREFERRED|MWAW_Drawing||
 OpenDocument Drawing Flat XML|com.sun.star.drawing.DrawingDocument|Flat XML ODF 図形描画|IMPORT EXPORT|draw_ODG_FlatXML|fodg odg xml|application/vnd.oasis.opendocument.graphics-flat-xml
@@ -78,7 +79,8 @@ Impress MS PowerPoint 2007 XML Template|com.sun.star.presentation.PresentationDo
 Impress MS PowerPoint 2007 XML VBA|com.sun.star.presentation.PresentationDocument|PowerPoint 2007–365 VBA|IMPORT EXPORT PREFERRED|MS PowerPoint 2007 XML VBA|pptm|application/vnd.ms-powerpoint.presentation.macroEnabled.main+xml
 Impress Office Open XML|com.sun.star.presentation.PresentationDocument|Office Open XML プレゼンテーション|IMPORT EXPORT PREFERRED|Office Open XML Presentation|pptx pptm|application/vnd.openxmlformats-officedocument.presentationml.presentation
 Impress Office Open XML AutoPlay|com.sun.star.presentation.PresentationDocument|Office Open XML プレゼンテーションオートプレイ|IMPORT EXPORT PREFERRED|Office Open XML Presentation AutoPlay|ppsx|application/vnd.openxmlformats-officedocument.presentationml.slideshow
-Impress Office Open XML Template|com.sun.star.presentation.PresentationDocument|Office Open XML プレゼンテーションテンプレート|IMPORT EXPORT PREFERRED|Office Open XML Presentation Template|potx potm|application/vnd.openxmlformats-officedocument.presentationml.template
+Impress
+Office Open XML Template|com.sun.star.presentation.PresentationDocument|Office Open XML プレゼンテーションテンプレート|IMPORT EXPORT PREFERRED|Office Open XML Presentation Template|potx potm|application/vnd.openxmlformats-officedocument.presentationml.template
 MS PowerPoint 97|com.sun.star.presentation.PresentationDocument|PowerPoint 97–2003|IMPORT EXPORT|impress_MS_PowerPoint_97|ppt dps|application/vnd.ms-powerpoint
 MS PowerPoint 97 AutoPlay|com.sun.star.presentation.PresentationDocument|PowerPoint 97–2003 オートプレイ|IMPORT EXPORT|impress_MS_PowerPoint_97_AutoPlay|pps|application/vnd.ms-powerpoint
 MS PowerPoint 97 Vorlage|com.sun.star.presentation.PresentationDocument|PowerPoint 97–2003 テンプレート|IMPORT EXPORT|impress_MS_PowerPoint_97_Vorlage|pot dpt|application/vnd.ms-powerpoint

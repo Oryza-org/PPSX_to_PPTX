@@ -80,7 +80,7 @@ class OfficeConverter:
                 if attempt > 0:
                     printStatus("RETRY", YELLOW)
                     printMsg(f"--- Attempt {attempt + 1}/{MAX_RETRY_ATTEMPTS}: Retrying connection...")
-                
+
                 localContext = uno.getComponentContext()
                 resolver = localContext.getServiceManager().createInstanceWithContext(
                     "com.sun.star.bridge.UnoUrlResolver", localContext)
@@ -143,13 +143,13 @@ class OfficeConverter:
                   print(f"Message: {e.Message}")
              if hasattr(e, 'ErrCode'):
                   print(f"ErrCode: {e.ErrCode}")
-             sys.exit(1)
+             raise # エラーを呼び出し元に伝える
         except Exception as e:
             # その他の予期しない例外
             print(f"--- An unexpected error occurred...")
             print(f"Error Type: {type(e).__name__}") # 例外のクラス名を表示
             print(f"Message: {e}")
-            sys.exit(1)
+            raise # エラーを呼び出し元に伝える
         # --- 例外処理ここまで ---
 
         finally:
@@ -165,13 +165,12 @@ class OfficeConverter:
                     print(f"--- {RED}[ERROR]{RESET} Warning: Error during document cleanup: {e}")
 
 
-# --- スクリプトの実行部分 ---
-if __name__ == "__main__":
-    # コマンドライン引数の確認 (入力、出力、オプションでパスワード)
+def main():
+    """コマンドライン引数を処理し、変換を実行する"""
     if len(sys.argv) < 3 or len(sys.argv) > 4:
-        print("Usage: python convert.py <input_file_path> <output_file_path> [password]")
+        print("Usage: python src/ppsx_converter/converter.py <input_file_path> <output_file_path> [password]")
         print("Ensure Office is running in UNO listening mode (e.g., soffice --accept=socket,host=localhost,port=2002;urp; --headless)")
-        sys.exit(1)
+        sys.exit(1) # 引数エラー時はここで終了
 
     input_file = sys.argv[1]
     output_file = sys.argv[2]
@@ -180,25 +179,27 @@ if __name__ == "__main__":
     # 入力ファイルの存在チェック
     if not os.path.exists(input_file):
         print(f"--- {RED}[ERROR]{RESET} Input file not found at {input_file}")
-        sys.exit(1)
+        sys.exit(1) # ファイルが見つからない場合はここで終了
 
-    # 変換処理の実行
+    # 変換処理の実行 (エラーは呼び出し元に raise される)
+    converter = OfficeConverter(UNO_URL)
+    converter.convert(input_file, output_file, file_password)
+    print(f"--- {GREEN}[OK]{RESET} Conversion Successful")
+
+
+# --- スクリプトとして実行された場合のみ main() を呼び出す ---
+if __name__ == "__main__":
     try:
-        converter = OfficeConverter(UNO_URL)
-        converter.convert(input_file, output_file, file_password)
-        print(f"--- {GREEN}[OK]{RESET} Conversion Successful")
-        sys.exit(0)
+        main()
+        sys.exit(0) # 成功時はここで終了
     except ConnectionError as e:
-        # 接続エラーはここで捕捉
-        print(f"--- {RED}[ERROR]{RESET} Connection Error...")
-        print(f"--- Message: {e}")
+        # OfficeConverter __init__ または convert 内で発生し捕捉された ConnectionError
+        print(f"--- {RED}[ERROR]{RESET} Connection Error: {e}")
         print("--- Please ensure Office is running in UNO listening mode.")
         sys.exit(1)
     except Exception as e:
-        # OfficeConverter.__init__ で発生したエラーなどを捕捉
-        print(f"--- {RED}[ERROR]{RESET} An error occurred during initialization or conversion...")
-        print(f"--- Error Type: {type(e).__name__}") # 例外のクラス名を表示
-        print(f"--- Message: {e}")
+        # main() 内の引数エラーやファイルチェック以外の、予期せぬエラー
+        print(f"--- {RED}[ERROR]{RESET} An unexpected error occurred during execution: {e}")
         sys.exit(1)
 
 # 実行中のOfficeインスタンスは自動終了しないため、run.cmdなどの外部スクリプトで終了させる必要があります。
